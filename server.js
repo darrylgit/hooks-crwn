@@ -5,7 +5,7 @@ const path = require("path");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
-const stripe = require("stripe")(proccess.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -32,7 +32,7 @@ app.post("/payment", (req, res) => {
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
-    currenty: "usd"
+    currency: "usd"
   };
 
   stripe.charges.create(body, (stripeErr, stripeRes) => {
